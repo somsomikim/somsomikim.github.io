@@ -28,7 +28,6 @@
 }
 
 *{box-sizing:border-box}
-body{margin:0}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 body{
@@ -59,12 +58,15 @@ a:hover{color:var(--accent)}
   padding:4px 0 4px 14px; border-left:2px solid var(--line); transition:color .15s, border-color .15s;
 }
 .rail nav a:hover, .rail nav a.on{color:var(--ink); border-left-color:var(--accent)}
-.links{display:flex; flex-wrap:wrap; gap:8px}
+.contact-block{display:flex; flex-direction:column; gap:12px; margin-top:-8px}
+.links{display:flex; gap:10px}
 .links a{
-  font-family:var(--mono); font-size:.75rem; text-decoration:none;
-  border:1px solid var(--line); padding:5px 10px; border-radius:999px; background:var(--surface);
+  display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px;
+  border:1px solid var(--line); border-radius:50%; background:var(--surface); color:var(--muted);
+  transition:color .15s, border-color .15s;
 }
-.links a:hover{border-color:var(--accent)}
+.links a svg{width:18px; height:18px; display:block}
+.links a:hover{border-color:var(--accent); color:var(--accent)}
 .mail{display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:.78rem; color:var(--muted); flex-wrap:wrap}
 .mail span{user-select:all; color:var(--ink)}
 .mail button{
@@ -107,7 +109,12 @@ h3{font-family:var(--display); font-weight:600; font-size:1.15rem; line-height:1
 .pub:last-child{border-bottom:1px solid var(--line)}
 .pub .yr{font-family:var(--mono); font-size:.85rem; color:var(--muted); font-variant-numeric:tabular-nums; padding-top:2px}
 .pub .t{font-weight:600; line-height:1.4; margin:0 0 4px}
-.pub .au{color:var(--muted); font-size:.95rem; margin:0}
+.pub .t a{text-decoration:none}
+.pub .t a:hover{text-decoration:underline; color:var(--accent)}
+.pub .t a::after{content:" ↗"; font-weight:400; color:var(--muted); font-size:.85em}
+.pub .au{color:var(--muted); font-size:.92rem; margin:0}
+.pmid{font-size:.8rem; color:var(--muted); text-decoration:none; font-variant-numeric:tabular-nums}
+.pmid:hover{color:var(--accent)}
 .pub .au b{color:var(--ink); font-weight:600}
 .pub .meta{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:8px}
 .journal{font-style:italic; font-size:.95rem}
@@ -156,6 +163,7 @@ footer{font-family:var(--mono); font-size:.72rem; color:var(--muted); padding-to
   .pub{grid-template-columns:minmax(0,1fr); gap:4px}
   .langs{grid-template-columns:repeat(2, minmax(0,1fr))}
 }
+body{margin:0}
 </style>
 </head>
 <body>
@@ -168,6 +176,17 @@ footer{font-family:var(--mono); font-size:.72rem; color:var(--muted); padding-to
       <h1>Somi Kim</h1>
       <p class="role">Postdoctoral Researcher<br>Lab. of Computational Biology, POSTECH</p>
     </div>
+    <div class="contact-block">
+      <div class="links">
+        <a href="https://scholar.google.com/citations?hl=ko&amp;user=QyyaDlUAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9.5l4 2.36V17h2v-3.96L12 16l11-6.5L12 3Zm0 9.2a4.5 4.5 0 0 0-4.24 3 4.5 4.5 0 1 0 8.48 0A4.5 4.5 0 0 0 12 12.2Z" fill="currentColor"/></svg></a>
+        <a href="https://orcid.org/0000-0002-7507-7411" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor"/><text x="12" y="16.2" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10.5" font-weight="700" fill="var(--bg)">iD</text></svg></a>
+        <a href="https://linkedin.com/in/somi-kim-a91b1a254" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" fill="currentColor"/></svg></a>
+      </div>
+      <div class="mail" style="font-size:.85rem"><span id="addr">ksomi47@postech.ac.kr</span><button type="button" id="copy">copy</button></div>
+    </div>
     <nav aria-label="Sections">
       <a href="#about">About</a>
       <a href="#research">Research</a>
@@ -177,12 +196,6 @@ footer{font-family:var(--mono); font-size:.72rem; color:var(--muted); padding-to
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="links">
-      <a href="https://scholar.google.com/citations?hl=ko&amp;user=QyyaDlUAAAAJ" target="_blank" rel="noopener">Scholar</a>
-      <a href="https://orcid.org/0000-0002-7507-7411" target="_blank" rel="noopener">ORCID</a>
-      <a href="https://linkedin.com/in/somi-kim-a91b1a254" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-    <div class="mail"><span id="addr">ksomi47@postech.ac.kr</span><button type="button" id="copy">copy</button></div>
   </aside>
 
   <main>
@@ -352,17 +365,17 @@ footer{font-family:var(--mono); font-size:.72rem; color:var(--muted); padding-to
 /* ---------- publications ---------- */
 const PUBS = [
   {y:2026, j:"Under review", t:"Bipotent human lingual stem cells generate taste cells and suprabasal keratinocytes", a:"Byungmoo Oh*, <b>Somi Kim*</b>, et al.", first:true, review:true},
-  {y:2025, j:"Molecular Cancer", t:"Epithelial WNT secretion drives niche escape of developing gastric cancer", a:"Jaehun Lee*, Soomin Kim*, Youngchul Oh*, …, <b>Somi Kim</b>, et al."},
-  {y:2025, j:"Hepatology", t:"Endothelial RUNX3 controls LSEC dysfunction and angiocrine LRG1 signaling to prevent liver fibrosis", a:"Uttam Ojha, <b>Somi Kim</b>, et al."},
-  {y:2024, j:"Developmental Cell", t:"Dual function of PHF16 in reinstating homeostasis of murine intestinal epithelium after crypt regeneration", a:"Jun-Yeong Ahn*, <b>Somi Kim*</b>, et al.", first:true},
-  {y:2024, j:"Nature Communications", t:"Red2Flpe-SCON: a versatile, multicolor strategy for generating mosaic conditional knockout mice", a:"Szu-Hsien Sam Wu, <b>Somi Kim</b>, Heetak Lee, et al."},
-  {y:2024, j:"Nature Immunology", t:"A dietary commensal microbe enhances antitumor immunity by activating tumor macrophages to sequester iron", a:"Garima Sharma*, Amit Sharma*, Inhae Kim, Dong Gon Cha, <b>Somi Kim</b>, et al."},
-  {y:2024, j:"Experimental & Molecular Medicine", t:"Baf-mediated transcriptional regulation of teashirt is essential for the development of neural progenitor cell lineages", a:"Byung Su Ko*, Myeong Hoon Han*, …, <b>Somi Kim</b>, et al."},
-  {y:2023, j:"Science Advances", t:"Partial in vivo reprogramming enables injury-free intestinal regeneration via autonomous Ptgs1 induction", a:"Jumee Kim*, <b>Somi Kim*</b>, Seung-Yeon Lee*, et al.", first:true},
-  {y:2023, j:"Cancer Immunology, Immunotherapy", t:"Improved predictability of pancreatic ductal adenocarcinoma diagnosis using a blood immune cell biomarker panel developed from bulk mRNA sequencing and single-cell RNA-sequencing", a:"Sung Ill Jang*, Hyung Keun Lee*, Eun-Ju Chang, <b>Somi Kim</b>, et al."},
-  {y:2022, j:"Cell Stem Cell", t:"p57<sup>Kip2</sup> imposes the reserve stem cell state of gastric chief cells", a:"Ji-Hyun Lee*, <b>Somi Kim*</b>, Seungmin Han*, et al.", first:true},
-  {y:2022, j:"Oncogene", t:"A synergistic partnership between IL-33/ST2 and Wnt pathway through Bcl-xL drives gastric cancer stemness and metastasis", a:"Jong-Wan Kwon, Sang-Hyuk Seok, <b>Somi Kim</b>, et al."},
-  {y:2022, j:"Alzheimer’s Research & Therapy", t:"Gossypetin ameliorates 5xFAD spatial learning and memory through enhanced phagocytosis against Aβ", a:"Kyung Won Jo, Dohyun Lee*, Dong Gon Cha*, …, <b>Somi Kim</b>, et al."}
+  {"y": 2025, "j": "Molecular Cancer", "t": "Epithelial WNT secretion drives niche escape of developing gastric cancer", "a": "Jaehun Lee*, Soomin Kim*, Youngchul Oh*, Stephan R Jahn*, Jihoon Kim*, Yeongjun Kim, Tim Schmäche, Sang-Min Kim, Isaree Teriyapirom, Thomas Groß, Ohbin Kwon, Jungmin Kim, <b>Somi Kim</b>, Anne-Marlen Ada, Andrea Català-Bordes, Youngwon Cho, Jinho Kim, Amanda Andersson-Rolf, Sebastian R Merker, Joo Yeon Lim, Ji-Yeon Park, Thomas M Klompstra, Ki-Jun Yoon, Dae-Sik Lim, Ho-Seok Lee, Jong Kyoung Kim, Eunyoung Choi, James R Goldenring, Jae-Ho Cheong, Hyunki Kim, Daniel E Stange, Heetak Lee, Bon-Kyoung Koo, Ji-Hyun Lee", "url": "https://doi.org/10.1186/s12943-025-02543-z", "pmid": "41398956", "first": false},
+  {"y": 2025, "j": "Hepatology", "t": "Endothelial RUNX3 controls LSEC dysfunction and angiocrine LRG1 signaling to prevent liver fibrosis", "a": "Uttam Ojha, <b>Somi Kim</b>, Chang Yun Rhee, Jihye You, Yoon Ha Choi, Soo-Hyun Yoon, Soo Young Park, Yu Rim Lee, Jong Kyoung Kim, Suk-Chul Bae, You Mie Lee", "url": "https://doi.org/10.1097/HEP.0000000000001018", "pmid": "39042837", "first": false},
+  {"y": 2024, "j": "Developmental Cell", "t": "Dual function of PHF16 in reinstating homeostasis of murine intestinal epithelium after crypt regeneration", "a": "Jun-Yeong Ahn*, <b>Somi Kim*</b>, Chang Rok Kim, Ji-Hyun Lee, Jong Min Kim, Thomas M Klompstra, Yoon Ha Choi, Yoon Jeon, Yongwoo Na, Jong-Seo Kim, Yuki Okada, Ho Lee, Ik Soo Kim, Jong Kyoung Kim, Bon-Kyoung Koo, Sung Hee Baek", "url": "https://doi.org/10.1016/j.devcel.2024.08.009", "pmid": "39232563", "first": true},
+  {"y": 2024, "j": "Nature Communications", "t": "Red2Flpe-SCON: a versatile, multicolor strategy for generating mosaic conditional knockout mice", "a": "Szu-Hsien Sam Wu, <b>Somi Kim</b>, Heetak Lee, Ji-Hyun Lee, So-Yeon Park, Réka Bakonyi, Isaree Teriyapirom, Natalia Hallay, Sandra Pilat-Carotta, Hans-Christian Theussl, Jihoon Kim, Joo-Hyeon Lee, Benjamin D Simons, Jong Kyoung Kim, Gabriele Colozza, Bon-Kyoung Koo", "url": "https://doi.org/10.1038/s41467-024-49382-y", "pmid": "38862535", "first": false},
+  {"y": 2024, "j": "Nature Immunology", "t": "A dietary commensal microbe enhances antitumor immunity by activating tumor macrophages to sequester iron", "a": "Garima Sharma*, Amit Sharma*, Inhae Kim, Dong Gon Cha, <b>Somi Kim</b>, Eun Seo Park, Jae Gyun Noh, Juhee Lee, Ja Hyeon Ku, Yoon Ha Choi, JungHo Kong, Haena Lee, Haeun Ko, Juhun Lee, Anna Notaro, Seol Hee Hong, Joon Haeng Rhee, Sang Geon Kim, Cristina De Castro, Antonio Molinaro, Kunyoo Shin, Sanguk Kim, Jong Kyoung Kim, Dipayan Rudra, Sin-Hyeog Im", "url": "https://doi.org/10.1038/s41590-024-01816-x", "pmid": "38664585", "first": false},
+  {"y": 2024, "j": "Experimental & Molecular Medicine", "t": "Baf-mediated transcriptional regulation of teashirt is essential for the development of neural progenitor cell lineages", "a": "Byung Su Ko*, Myeong Hoon Han*, Min Jee Kwon*, Dong Gon Cha*, Yuri Ji, Eun Seo Park, Min Jae Jeon, <b>Somi Kim</b>, Kyeongho Lee, Yoon Ha Choi, Jusung Lee, Monica Torras-Llort, Ki-Jun Yoon, Hyosang Lee, Jong Kyoung Kim, Sung Bae Lee", "url": "https://doi.org/10.1038/s12276-024-01169-3", "pmid": "38374207", "first": false},
+  {"y": 2023, "j": "Science Advances", "t": "Partial in vivo reprogramming enables injury-free intestinal regeneration via autonomous Ptgs1 induction", "a": "Jumee Kim*, <b>Somi Kim*</b>, Seung-Yeon Lee*, Beom-Ki Jo, Ji-Young Oh, Eun-Ji Kwon, Keun-Tae Kim, Anish Ashok Adpaikar, Eun-Jung Kim, Han-Sung Jung, Hwa-Ryeon Kim, Jae-Seok Roe, Chang Pyo Hong, Jong Kyoung Kim, Bon-Kyoung Koo, Hyuk-Jin Cha", "url": "https://doi.org/10.1126/sciadv.adi8454", "pmid": "38000027", "first": true},
+  {"y": 2023, "j": "Cancer Immunology, Immunotherapy", "t": "Improved predictability of pancreatic ductal adenocarcinoma diagnosis using a blood immune cell biomarker panel developed from bulk mRNA sequencing and single-cell RNA-sequencing", "a": "Sung Ill Jang*, Hyung Keun Lee*, Eun-Ju Chang, <b>Somi Kim</b>, So Young Kim, In Young Hong, Jong Kyoung Kim, Hye Sun Lee, Juyeon Yang, Jae Hee Cho, Dong Ki Lee", "url": "https://doi.org/10.1007/s00262-023-03458-8", "pmid": "37165046", "first": false},
+  {"y": 2022, "j": "Cell Stem Cell", "t": "p57<sup>Kip2</sup> imposes the reserve stem cell state of gastric chief cells", "a": "Ji-Hyun Lee*, <b>Somi Kim*</b>, Seungmin Han*, Jimin Min, Brianna Caldwell, Aileen-Diane Bamford, Andreia Sofia Batista Rocha, JinYoung Park, Sieun Lee, Szu-Hsien Sam Wu, Heetak Lee, Juergen Fink, Sandra Pilat-Carotta, Jihoon Kim, Manon Josserand, Réka Szep-Bakonyi, Yohan An, Young Seok Ju, Anna Philpott, Benjamin D Simons, Daniel E Stange, Eunyoung Choi, Bon-Kyoung Koo, Jong Kyoung Kim", "url": "https://doi.org/10.1016/j.stem.2022.04.001", "pmid": "35523142", "first": true},
+  {"y": 2022, "j": "Oncogene", "t": "A synergistic partnership between IL-33/ST2 and Wnt pathway through Bcl-xL drives gastric cancer stemness and metastasis", "a": "Jong-Wan Kwon, Sang-Hyuk Seok, <b>Somi Kim</b>, Hyeok-Won An, Anahita Dev Choudhury, Sang-Ho Woo, Jeong-Seop Oh, Jong Kyoung Kim, Dominic C Voon, Dae-Yong Kim, Jun Won Park", "url": "https://doi.org/10.1038/s41388-022-02575-5", "pmid": "36526851", "first": false},
+  {"y": 2022, "j": "Alzheimer’s Research & Therapy", "t": "Gossypetin ameliorates 5xFAD spatial learning and memory through enhanced phagocytosis against Aβ", "a": "Kyung Won Jo, Dohyun Lee*, Dong Gon Cha*, Eunji Oh, Yoon Ha Choi, <b>Somi Kim</b>, Eun Seo Park, Jong Kyoung Kim, Kyong-Tai Kim", "url": "https://doi.org/10.1186/s13195-022-01096-3", "pmid": "36271414", "first": false}
 ];
 const list = document.getElementById('pubs');
 function renderPubs(f){
@@ -371,10 +384,12 @@ function renderPubs(f){
     <li class="pub">
       <div class="yr">${p.y}</div>
       <div>
-        <p class="t">${p.t}</p>
+        <p class="t">${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.t}</a>` : p.t}</p>
         <p class="au">${p.a}</p>
         <div class="meta">
           <span class="journal">${p.j}</span>
+          ${p.pmid ? `<a class="pmid" href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank" rel="noopener">PMID ${p.pmid}</a>` : ''}
+          ${p.review ? '<span class="badge review">under review</span>' : ''}
           ${p.first ? '<span class="badge first">co-first</span>' : ''}
         </div>
       </div>
